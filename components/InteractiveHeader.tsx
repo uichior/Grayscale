@@ -248,7 +248,7 @@ export function InteractiveHeader() {
           <DialogHeader>
             <DialogTitle className="font-mono text-2xl pr-8">About Grayscale</DialogTitle>
             <DialogDescription className="font-mono text-gray-600">
-              現場で作り上げた実践型DXをあなたの現場にも
+              現場で生まれた実践型DXをあなたの現場にも
             </DialogDescription>
           </DialogHeader>
           
@@ -325,16 +325,14 @@ export function InteractiveHeader() {
             <div className="border-t border-gray-200 pt-6">
               <h3 className="font-semibold text-gray-900 mb-2">ミッション</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                私たちは、革新的なデザインと最新技術を融合させ、クライアントのビジネスに新たな価値を創造します。
-                デジタルトランスフォーメーションを通じて、企業と社会の持続的な成長に貢献することを使命としています。
+                製造業で10年間かけて培ったDX体験を地域の皆様に寄り添いながら、圧倒的なスピードと低価格でお届けし、地域の発展の為に貢献しながらともに成長していく事を使命としています。
               </p>
             </div>
             
             <div className="border-t border-gray-200 pt-6">
               <h3 className="font-semibold text-gray-900 mb-2">ビジョン</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                「すべての企業がデジタルの力を最大限に活用できる世界」を実現し、
-                日本のDXをリードする存在となることを目指しています。
+                茨城のすべての企業にDXの第一歩を
               </p>
             </div>
           </div>

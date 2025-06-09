@@ -60,9 +60,6 @@ export function SafeQuickContact() {
         <h3 className="font-mono text-2xl font-bold text-gray-900">
           お気軽にお問い合わせください
         </h3>
-        <p className="mt-2 font-mono text-sm text-gray-600">
-          ご都合の良い方法でご連絡ください
-        </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
