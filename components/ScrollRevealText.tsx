@@ -10,7 +10,7 @@ export function ScrollRevealText({ text, className = "" }: ScrollRevealTextProps
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.9", "start 0.25"]
+    offset: ["start 0.8", "start 0.4"]
   })
 
   const words = text.split(' ')

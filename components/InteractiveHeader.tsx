@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
-import { Menu, X, Building2, Users, Mail, MapPin, User, DollarSign, Phone } from 'lucide-react'
+import { Menu, X, Building2, Users, Mail, MapPin, User, DollarSign, Phone, Facebook, Instagram, Twitter } from 'lucide-react'
 
 const menuItems = [
   { label: 'About', japanese: '会社概要', icon: Building2 },
@@ -55,7 +55,9 @@ export function InteractiveHeader() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
-              {menuItems.map((item, index) => (
+              {/* メニュー項目 */}
+              <div className="flex items-center gap-8">
+                {menuItems.map((item, index) => (
                 <motion.div
                   key={item.label}
                   className="relative group"
@@ -93,7 +95,53 @@ export function InteractiveHeader() {
                     <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45" />
                   </motion.div>
                 </motion.div>
-              ))}
+                ))}
+              </div>
+              
+              {/* SNSアイコン */}
+              <div className="flex items-center gap-3 ml-4 border-l border-gray-300 pl-4">
+                <motion.a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-gray-900 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <Facebook className="h-4 w-4" />
+                </motion.a>
+                
+                <motion.a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-gray-900 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <Instagram className="h-4 w-4" />
+                </motion.a>
+                
+                <motion.a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-gray-900 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <Twitter className="h-4 w-4" />
+                </motion.a>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -160,6 +208,34 @@ export function InteractiveHeader() {
                     <span className="block text-xs text-gray-400">{item.japanese}</span>
                   </motion.button>
                 ))}
+                
+                {/* モバイル用SNSアイコン */}
+                <div className="flex items-center gap-4 pt-4 mt-4 border-t border-gray-200">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-gray-900"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-gray-900"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-gray-900"
+                  >
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}
@@ -172,7 +248,7 @@ export function InteractiveHeader() {
           <DialogHeader>
             <DialogTitle className="font-mono text-2xl">About Grayscale</DialogTitle>
             <DialogDescription className="font-mono text-gray-600">
-              デジタルとアナログの境界を再定義する
+              現場で作り上げた実践型DXをあなたの現場にも
             </DialogDescription>
           </DialogHeader>
           

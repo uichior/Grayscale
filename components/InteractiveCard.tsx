@@ -53,9 +53,9 @@ export function InteractiveCard({ title, description, content, className = "" }:
       }}
       className={`relative ${className}`}
     >
-      <Card className="relative overflow-hidden border-gray-200 bg-white/90 backdrop-blur transition-shadow hover:shadow-2xl">
+      <Card className="relative overflow-hidden border-gray-700 bg-gray-900/90 backdrop-blur transition-shadow hover:shadow-2xl hover:border-gray-600">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 opacity-0 transition-opacity hover:opacity-100"
+          className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-700 opacity-0 transition-opacity hover:opacity-100"
           style={{
             transform: "translateZ(-50px)",
           }}

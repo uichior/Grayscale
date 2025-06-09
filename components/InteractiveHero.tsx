@@ -56,7 +56,7 @@ export function InteractiveHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          デジタルとアナログの境界を再定義する
+          現場で作り上げた実践型DXをあなたの現場にも
         </motion.p>
         
       </motion.div>
