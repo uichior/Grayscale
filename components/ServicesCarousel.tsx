@@ -69,33 +69,6 @@ export function ServicesCarousel() {
   const [showRightArrow, setShowRightArrow] = useState(true)
   const [isPaused, setIsPaused] = useState(false)
 
-  // 自動スクロール用
-  useEffect(() => {
-    const container = scrollRef.current
-    if (!container || isPaused) return
-
-    const scrollSpeed = 1 // ピクセル/フレーム
-    let animationId: number
-
-    const animate = () => {
-      // 半分まで到達したら最初に戻る（シームレスなループ）
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0
-      } else {
-        container.scrollLeft += scrollSpeed
-      }
-      animationId = requestAnimationFrame(animate)
-    }
-
-    animationId = requestAnimationFrame(animate)
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId)
-      }
-    }
-  }, [isPaused])
-
   const handleScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
@@ -136,26 +109,25 @@ export function ServicesCarousel() {
       </button>
 
       {/* カルーセルコンテナ */}
-      <div 
-        ref={scrollRef}
-        onScroll={handleScroll}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        className="flex gap-6 overflow-x-auto scroll-smooth pb-6 scrollbar-hide"
-      >
-        {/* サービスを2回繰り返して無限ループ風に */}
-        {[...services, ...services].map((service, index) => {
-          const Icon = icons[service.iconName as keyof typeof icons]
-          return (
-            <motion.div
-              key={`${service.title}-${index}`}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: (index % services.length) * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="flex-shrink-0"
-            >
-              <div className="w-80">
+      <div className="relative overflow-hidden">
+        <div 
+          className={`flex gap-6 pb-6 ${isPaused ? '' : 'animate-scroll'}`}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          style={{ width: 'fit-content' }}
+        >
+          {/* サービスを3回繰り返して無限ループ */}
+          {[...services, ...services, ...services].map((service, index) => {
+            const Icon = icons[service.iconName as keyof typeof icons]
+            return (
+              <div
+                key={`${service.title}-${index}`}
+                className="flex-shrink-0 w-80 opacity-0 animate-fade-in"
+                style={{ 
+                  animationDelay: `${(index % services.length) * 0.1}s`,
+                  animationFillMode: 'forwards'
+                }}
+              >
                 <InteractiveCard
                   title={service.title}
                   description={service.description}
@@ -169,9 +141,9 @@ export function ServicesCarousel() {
                   }
                 />
               </div>
-            </motion.div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
       
       {/* スワイプインジケーター（モバイル） */}

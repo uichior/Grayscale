@@ -53,8 +53,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Noto Sans JP', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'Noto Sans JP', 'sans-serif'],
+        sans: ['Noto Sans JP', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
+        display: ['Noto Sans JP', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1.5' }],
