@@ -101,7 +101,7 @@ export function InteractiveHeader() {
               {/* SNSアイコン */}
               <div className="flex items-center gap-3 ml-4 border-l border-gray-300 pl-4">
                 <motion.a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/grayscale310"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-500 hover:text-gray-900 transition-colors"
@@ -115,7 +115,7 @@ export function InteractiveHeader() {
                 </motion.a>
                 
                 <motion.a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/grayscale310/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-500 hover:text-gray-900 transition-colors"
@@ -129,7 +129,7 @@ export function InteractiveHeader() {
                 </motion.a>
                 
                 <motion.a
-                  href="https://twitter.com"
+                  href="https://x.com/grayscale310"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-500 hover:text-gray-900 transition-colors"
@@ -212,7 +212,7 @@ export function InteractiveHeader() {
                 {/* モバイル用SNSアイコン */}
                 <div className="flex items-center gap-4 pt-4 mt-4 border-t border-gray-200">
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/grayscale310"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-gray-900"
@@ -220,7 +220,7 @@ export function InteractiveHeader() {
                     <Facebook className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/grayscale310/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-gray-900"
@@ -228,7 +228,7 @@ export function InteractiveHeader() {
                     <Instagram className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://twitter.com"
+                    href="https://x.com/grayscale310"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-gray-900"
