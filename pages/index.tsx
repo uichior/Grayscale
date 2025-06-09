@@ -50,7 +50,7 @@ export default function Home() {
                   className="font-mono text-4xl font-light leading-relaxed text-gray-800 md:text-5xl"
                 />
                 <ScrollRevealText
-                  text="地域とともに 歩む DXパートナー"
+                  text="地域とともに歩む DXパートナー"
                   className="mt-4 font-mono text-4xl font-light leading-relaxed text-gray-800 md:text-5xl"
                 />
               </div>
@@ -130,7 +130,7 @@ export default function Home() {
         <footer className="border-t border-gray-200 px-4 py-8">
           <div className="mx-auto max-w-7xl text-center">
             <p className="font-mono text-sm text-gray-500">
-              © 2024 Grayscale. All rights reserved.
+              © 2025 Grayscale. All rights reserved.
             </p>
           </div>
         </footer>
