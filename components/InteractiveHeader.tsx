@@ -244,9 +244,9 @@ export function InteractiveHeader() {
 
       {/* About Dialog */}
       <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
           <DialogHeader>
-            <DialogTitle className="font-mono text-2xl">About Grayscale</DialogTitle>
+            <DialogTitle className="font-mono text-2xl pr-8">About Grayscale</DialogTitle>
             <DialogDescription className="font-mono text-gray-600">
               現場で作り上げた実践型DXをあなたの現場にも
             </DialogDescription>

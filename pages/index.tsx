@@ -28,9 +28,23 @@ export default function Home() {
         <InteractiveHero />
 
         <section className="relative px-4 py-32">
-          <div className="mx-auto max-w-7xl">
+          {/* 茨城県画像背景（モバイル用） */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="absolute inset-0 flex items-center justify-center md:hidden"
+          >
+            <img
+              src="/ibaraki.png"
+              alt="茨城県"
+              className="h-80 w-auto opacity-10 pointer-events-none"
+            />
+          </motion.div>
+          
+          <div className="mx-auto max-w-7xl relative z-10">
             <div className="flex items-center justify-center gap-8 max-w-5xl mx-auto">
-              <div className="text-right">
+              <div className="text-center md:text-right flex-1 md:flex-none">
                 <ScrollRevealText
                   text="IBARAKIの 課題と向き合う"
                   className="font-mono text-4xl font-light leading-relaxed text-gray-800 md:text-5xl"
@@ -41,11 +55,12 @@ export default function Home() {
                 />
               </div>
               
+              {/* デスクトップ用画像 */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 1 }}
-                className="relative"
+                className="relative hidden md:block"
               >
                 <img
                   src="/ibaraki.png"
