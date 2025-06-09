@@ -112,7 +112,6 @@ export function ServicesCarousel() {
         style={{
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
-          WebkitScrollbar: { display: 'none' }
         }}
       >
         {services.map((service, index) => {
