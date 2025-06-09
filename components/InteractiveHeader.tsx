@@ -325,7 +325,7 @@ export function InteractiveHeader() {
             <div className="border-t border-gray-200 pt-6">
               <h3 className="font-semibold text-gray-900 mb-2">ミッション</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                製造業で10年間かけて培ったDX体験を地域の皆様に寄り添いながら、圧倒的なスピードと低価格でお届けし、地域の発展の為に貢献しながらともに成長していく事を使命としています。
+                製造業で10年間かけて培ったDX体験を地域の皆様に寄り添いながら、圧倒的なスピードと低価格でお届けし、地域の発展の為に貢献し、共に成長していく事を使命としています。
               </p>
             </div>
             
