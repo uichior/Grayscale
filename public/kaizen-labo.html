@@ -39,11 +39,67 @@
             scroll-behavior: smooth;
         }
         
-        /* ヒーロー背景画像 */
+        /* ヒーロー背景 - DXテックスタイル */
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/featured/?factory,industry');
-            background-size: cover;
-            background-position: center;
+            background: 
+                linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.85) 50%, rgba(17, 24, 39, 0.95) 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(45, 212, 191, 0.05) 35px, rgba(45, 212, 191, 0.05) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(59, 130, 246, 0.03) 35px, rgba(59, 130, 246, 0.03) 70px),
+                radial-gradient(ellipse at top right, rgba(45, 212, 191, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                #111827;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* アニメーションするグリッドオーバーレイ */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(0deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 1;
+        }
+        
+        /* デジタルパーティクル風エフェクト */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(45, 212, 191, 0.4) 0%, transparent 2%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 2%),
+                radial-gradient(circle at 40% 80%, rgba(45, 212, 191, 0.2) 0%, transparent 1.5%),
+                radial-gradient(circle at 90% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 1%),
+                radial-gradient(circle at 10% 90%, rgba(45, 212, 191, 0.2) 0%, transparent 1%);
+            animation: particleFloat 15s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        /* ヒーローコンテンツのz-index調整 */
+        .hero-bg > div {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 0.8; }
         }
     </style>
 </head>
@@ -184,7 +240,7 @@
                     <ul class="text-sm text-gray-600 space-y-2">
                         <li>• 残業時間削減</li>
                         <li>• スキルアップ支援</li>
-                        <li>• 福利厚生充実</li>
+                        <li>• 事務所レイアウト提案</li>
                     </ul>
                 </div>
             </div>
@@ -209,7 +265,7 @@
                             <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            月1回の定期訪問
+                            AI活用による業務自動化
                         </li>
                         <li class="flex items-center">
                             <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -233,7 +289,19 @@
                             <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            24時間メールサポート
+                            クラウド移行コンサルティング
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            業務フロー最適化
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            労務管理システム構築
                         </li>
                     </ul>
                     <a href="#contact" class="block text-center bg-accent text-white px-6 py-4 rounded-lg font-bold hover:bg-accent/90 transition text-lg">
