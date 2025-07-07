@@ -7,7 +7,7 @@ import { Menu, X, Building2, Users, Mail, MapPin, User, DollarSign, Phone, Faceb
 const menuItems = [
   { label: 'About', japanese: '会社概要', icon: Building2 },
   { label: 'Services', japanese: 'サービス', section: 'services' },
-  { label: 'KAZEN LABO', japanese: '改善ラボ', href: '/kaizen-labo.html' },
+  { label: 'KAIZEN LABO', japanese: '改善ラボ', href: '/kaizen-labo.html' },
   { label: 'Contact', japanese: 'お問い合わせ', section: 'contact' }
 ]
 
