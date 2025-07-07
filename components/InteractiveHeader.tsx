@@ -7,6 +7,7 @@ import { Menu, X, Building2, Users, Mail, MapPin, User, DollarSign, Phone, Faceb
 const menuItems = [
   { label: 'About', japanese: '会社概要', icon: Building2 },
   { label: 'Services', japanese: 'サービス', section: 'services' },
+  { label: 'KAZEN LABO', japanese: '改善ラボ', href: '/kaizen-labo.html' },
   { label: 'Contact', japanese: 'お問い合わせ', section: 'contact' }
 ]
 
@@ -65,25 +66,43 @@ export function InteractiveHeader() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <motion.button
-                    className="relative font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors py-2"
-                    onClick={() => {
-                      if (item.label === 'About') {
-                        setIsAboutOpen(true)
-                      } else if (item.section) {
-                        scrollToSection(item.section)
-                      }
-                    }}
-                    whileHover={{ y: -2 }}
-                  >
-                    {item.label}
-                    <motion.div
-                      className="absolute -bottom-1 left-0 right-0 h-px bg-gray-900"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </motion.button>
+                  {item.href ? (
+                    <motion.a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors py-2 block"
+                      whileHover={{ y: -2 }}
+                    >
+                      {item.label}
+                      <motion.div
+                        className="absolute -bottom-1 left-0 right-0 h-px bg-gray-900"
+                        initial={{ scaleX: 0 }}
+                        whileHover={{ scaleX: 1 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    </motion.a>
+                  ) : (
+                    <motion.button
+                      className="relative font-mono text-sm text-gray-600 hover:text-gray-900 transition-colors py-2"
+                      onClick={() => {
+                        if (item.label === 'About') {
+                          setIsAboutOpen(true)
+                        } else if (item.section) {
+                          scrollToSection(item.section)
+                        }
+                      }}
+                      whileHover={{ y: -2 }}
+                    >
+                      {item.label}
+                      <motion.div
+                        className="absolute -bottom-1 left-0 right-0 h-px bg-gray-900"
+                        initial={{ scaleX: 0 }}
+                        whileHover={{ scaleX: 1 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    </motion.button>
+                  )}
                   
                   {/* 日本語ツールチップ */}
                   <motion.div
@@ -189,24 +208,40 @@ export function InteractiveHeader() {
             >
               <div className="px-4 py-4 space-y-4">
                 {menuItems.map((item, index) => (
-                  <motion.button
-                    key={item.label}
-                    className="block w-full text-left font-mono text-gray-600 hover:text-gray-900 py-2"
-                    onClick={() => {
-                      if (item.label === 'About') {
-                        setIsAboutOpen(true)
-                        setIsMenuOpen(false)
-                      } else if (item.section) {
-                        scrollToSection(item.section)
-                      }
-                    }}
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <span className="block text-sm">{item.label}</span>
-                    <span className="block text-xs text-gray-400">{item.japanese}</span>
-                  </motion.button>
+                  item.href ? (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full text-left font-mono text-gray-600 hover:text-gray-900 py-2"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <span className="block text-sm">{item.label}</span>
+                      <span className="block text-xs text-gray-400">{item.japanese}</span>
+                    </motion.a>
+                  ) : (
+                    <motion.button
+                      key={item.label}
+                      className="block w-full text-left font-mono text-gray-600 hover:text-gray-900 py-2"
+                      onClick={() => {
+                        if (item.label === 'About') {
+                          setIsAboutOpen(true)
+                          setIsMenuOpen(false)
+                        } else if (item.section) {
+                          scrollToSection(item.section)
+                        }
+                      }}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <span className="block text-sm">{item.label}</span>
+                      <span className="block text-xs text-gray-400">{item.japanese}</span>
+                    </motion.button>
+                  )
                 ))}
                 
                 {/* モバイル用SNSアイコン */}
