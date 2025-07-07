@@ -39,50 +39,24 @@
             scroll-behavior: smooth;
         }
         
-        /* ヒーロー背景 - DXテックスタイル */
+        /* ヒーロー背景 - シナプスネットワーク */
         .hero-bg {
             background: 
-                linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.85) 50%, rgba(17, 24, 39, 0.95) 100%),
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(45, 212, 191, 0.05) 35px, rgba(45, 212, 191, 0.05) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(59, 130, 246, 0.03) 35px, rgba(59, 130, 246, 0.03) 70px),
-                radial-gradient(ellipse at top right, rgba(45, 212, 191, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                #111827;
+                linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(31, 41, 55, 0.95) 50%, rgba(17, 24, 39, 0.98) 100%),
+                radial-gradient(ellipse at top right, rgba(45, 212, 191, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                #0f172a;
             position: relative;
             overflow: hidden;
         }
         
-        /* アニメーションするグリッドオーバーレイ */
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: 
-                linear-gradient(0deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-            z-index: 1;
-        }
-        
-        /* デジタルパーティクル風エフェクト */
-        .hero-bg::after {
-            content: '';
+        /* シナプスネットワークコンテナ */
+        .synapse-network {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(45, 212, 191, 0.4) 0%, transparent 2%),
-                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 2%),
-                radial-gradient(circle at 40% 80%, rgba(45, 212, 191, 0.2) 0%, transparent 1.5%),
-                radial-gradient(circle at 90% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 1%),
-                radial-gradient(circle at 10% 90%, rgba(45, 212, 191, 0.2) 0%, transparent 1%);
-            animation: particleFloat 15s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
             z-index: 1;
         }
         
@@ -90,16 +64,6 @@
         .hero-bg > div {
             position: relative;
             z-index: 2;
-        }
-        
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        @keyframes particleFloat {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
-            50% { transform: translateY(-20px) scale(1.1); opacity: 0.8; }
         }
     </style>
 </head>
@@ -136,6 +100,7 @@
     
     <!-- ==================== ヒーローセクション ==================== -->
     <section class="hero-bg min-h-screen flex items-center justify-center text-white relative">
+        <canvas class="synapse-network"></canvas>
         <div class="container mx-auto max-w-7xl px-4 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                 茨城の中小企業で働く<br>すべての人が、もっと輝ける社会へ
@@ -303,6 +268,24 @@
                             </svg>
                             労務管理システム構築
                         </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            WEBサイト制作
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            ドメイン管理
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            ナレッジベース構築支援
+                        </li>
                     </ul>
                     <a href="#contact" class="block text-center bg-accent text-white px-6 py-4 rounded-lg font-bold hover:bg-accent/90 transition text-lg">
                         無料カイゼン診断を申し込む
@@ -456,6 +439,151 @@
     
     <!-- JavaScript -->
     <script>
+        // シナプスネットワークアニメーション
+        class SynapseNetwork {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.connections = [];
+                this.mouse = { x: 0, y: 0 };
+                
+                this.resize();
+                this.init();
+                
+                window.addEventListener('resize', () => this.resize());
+                window.addEventListener('mousemove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    this.mouse.x = e.clientX - rect.left;
+                    this.mouse.y = e.clientY - rect.top;
+                });
+            }
+            
+            resize() {
+                this.canvas.width = this.canvas.parentElement.offsetWidth;
+                this.canvas.height = this.canvas.parentElement.offsetHeight;
+            }
+            
+            init() {
+                // パーティクル（星）を生成
+                const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 15000);
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        radius: Math.random() * 2 + 1,
+                        opacity: Math.random() * 0.5 + 0.5
+                    });
+                }
+            }
+            
+            update() {
+                // パーティクルの更新
+                this.particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    // 画面端での反射
+                    if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+                    
+                    // 境界内に保つ
+                    particle.x = Math.max(0, Math.min(this.canvas.width, particle.x));
+                    particle.y = Math.max(0, Math.min(this.canvas.height, particle.y));
+                });
+                
+                // コネクションの計算
+                this.connections = [];
+                for (let i = 0; i < this.particles.length; i++) {
+                    for (let j = i + 1; j < this.particles.length; j++) {
+                        const dx = this.particles[i].x - this.particles[j].x;
+                        const dy = this.particles[i].y - this.particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 150) {
+                            this.connections.push({
+                                from: this.particles[i],
+                                to: this.particles[j],
+                                opacity: 1 - distance / 150
+                            });
+                        }
+                    }
+                    
+                    // マウスとの接続
+                    const dx = this.particles[i].x - this.mouse.x;
+                    const dy = this.particles[i].y - this.mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        this.connections.push({
+                            from: this.particles[i],
+                            to: { x: this.mouse.x, y: this.mouse.y },
+                            opacity: (1 - distance / 100) * 0.8,
+                            isMouseConnection: true
+                        });
+                    }
+                }
+            }
+            
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // コネクション（シナプス）を描画
+                this.connections.forEach(connection => {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(connection.from.x, connection.from.y);
+                    this.ctx.lineTo(connection.to.x, connection.to.y);
+                    
+                    if (connection.isMouseConnection) {
+                        this.ctx.strokeStyle = `rgba(45, 212, 191, ${connection.opacity})`;
+                        this.ctx.lineWidth = 2;
+                    } else {
+                        this.ctx.strokeStyle = `rgba(59, 130, 246, ${connection.opacity * 0.3})`;
+                        this.ctx.lineWidth = 1;
+                    }
+                    
+                    this.ctx.stroke();
+                });
+                
+                // パーティクル（星）を描画
+                this.particles.forEach(particle => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+                    this.ctx.fill();
+                    
+                    // グロウエフェクト
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.radius * 3, 0, Math.PI * 2);
+                    const gradient = this.ctx.createRadialGradient(
+                        particle.x, particle.y, 0,
+                        particle.x, particle.y, particle.radius * 3
+                    );
+                    gradient.addColorStop(0, `rgba(45, 212, 191, ${particle.opacity * 0.3})`);
+                    gradient.addColorStop(1, 'rgba(45, 212, 191, 0)');
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.fill();
+                });
+            }
+            
+            animate() {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // シナプスネットワークの初期化
+        window.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.querySelector('.synapse-network');
+            if (canvas) {
+                const network = new SynapseNetwork(canvas);
+                network.animate();
+            }
+        });
+        
         // モバイルメニュートグル
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
